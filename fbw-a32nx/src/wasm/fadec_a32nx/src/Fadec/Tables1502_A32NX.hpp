@@ -29,20 +29,13 @@ class Tables1502_A32NX {
    *
    * @return A 2D array representing the CN2 - correctedN1 pairs.
    */
-  static constexpr double table1502[13][4] = {
-      {18.20,  0.00,   0.00,   17.00 }, // CN2 = 18.20, correctedN1 = [0.00, 0.00] at Mach 0.2, correctedN1 = 17.00 at Mach 0.9
-      {22.00,  1.90,   1.90,   17.40 }, // CN2 = 22.00, correctedN1 = [1.90, 1.90] at Mach 0.2, correctedN1 = 17.40 at Mach 0.9
-      {26.00,  2.50,   2.50,   18.20 }, // CN2 = 26.00, correctedN1 = [2.50, 2.50] at Mach 0.2, correctedN1 = 18.20 at Mach 0.9
-      {57.00,  12.80,  12.80,  27.00 }, // CN2 = 57.00, correctedN1 = [12.80, 12.80] at Mach 0.2, correctedN1 = 27.00 at Mach 0.9
-      {68.20,  19.60,  19.60,  34.83 }, // CN2 = 68.20, correctedN1 = [19.60, 19.60] at Mach 0.2, correctedN1 = 34.83 at Mach 0.9
-      {77.00,  26.00,  26.00,  40.84 }, // CN2 = 77.00, correctedN1 = [26.00, 26.00] at Mach 0.2, correctedN1 = 40.84 at Mach 0.9
-      {83.00,  31.42,  31.42,  44.77 }, // CN2 = 83.00, correctedN1 = [31.42, 31.42] at Mach 0.2, correctedN1 = 44.77 at Mach 0.9
-      {89.00,  40.97,  40.97,  50.09 }, // CN2 = 89.00, correctedN1 = [40.97, 40.97] at Mach 0.2, correctedN1 = 50.09 at Mach 0.9
-      {92.80,  51.00,  51.00,  55.04 }, // CN2 = 92.80, correctedN1 = [51.00, 51.00] at Mach 0.2, correctedN1 = 55.04 at Mach 0.9
-      {97.00,  65.00,  65.00,  65.00 }, // CN2 = 97.00, correctedN1 = [65.00, 65.00] at Mach 0.2, correctedN1 = 65.00 at Mach 0.9
-      {100.00, 77.00,  77.00,  77.00 }, // CN2 = 100.00, correctedN1 = [77.00, 77.00] at Mach 0.2, correctedN1 = 77.00 at Mach 0.9
-      {104.00, 85.00,  85.00,  85.50 }, // CN2 = 104.00, correctedN1 = [85.00, 85.00] at Mach 0.2, correctedN1 = 85.50 at Mach 0.9
-      {116.50, 101.00, 101.00, 101.00}  // CN2 = 116.50, correctedN1 = [101.00, 101.00] at Mach 0.2, correctedN1 = 101.00 at Mach 0.9
+  static constexpr double table1502[6][4] = {
+      {0,0,0,0},
+      {70,20,20,35},
+      {80,35,35,55}, 
+      {90,60,60,75}, 
+      {100,85,85,90},
+      {110,100,100,110}
   };
 
  public:
@@ -56,7 +49,7 @@ class Tables1502_A32NX {
   static double iCN2(double pressureAltitude, double mach) {
     // The specific values are likely derived from empirical data or a mathematical model of the engine's behavior.
     // The original source code does not provide any information on the origin of these values.
-    return 68.2 / ((std::sqrt)((288.15 - (1.98 * pressureAltitude / 1000)) / 288.15) * (std::sqrt)(1 + (0.2 * (std::pow)(mach, 2))));
+    return 70 / ((std::sqrt)((288.15 - (1.98 * pressureAltitude / 1000)) / 288.15) * (std::sqrt)(1 + (0.2 * (std::pow)(mach, 2))));
   }
 
   /**
@@ -73,7 +66,7 @@ class Tables1502_A32NX {
 
     // Find the row in the table that contains the CN2 value and store the index in i
     int i = 0;
-    while (table1502[i][0] <= cn2 && i < 13) {
+    while (table1502[i][0] <= cn2 && i < 6) {
       i++;
     }
 
