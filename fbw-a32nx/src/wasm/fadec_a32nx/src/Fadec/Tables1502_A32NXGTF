@@ -18,7 +18,7 @@
  *
  * TODO: extract the reusable code to a common library
  */
-class Tables1502_A32NX {
+class Tables1502_A32NXGTF {
   /**
    * @brief Table 1502 (CN2 vs correctedN1) representations with FSX nomenclature.
    *
